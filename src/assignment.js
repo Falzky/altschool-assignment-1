@@ -13,9 +13,11 @@
  * @returns number the sum of the numbers from 1 to destination
  */
 export function sumOfNumbersTo(destination) {
-    console.log(destination)
-    // write your code here
-    return 0
+    let sum = 0
+    for (let i = 1; i <= destination; i++) {
+        sum += i
+    }
+    return sum
 }
 
 /**
@@ -27,13 +29,17 @@ export function sumOfNumbersTo(destination) {
  * @returns the object containing count, sum, arrayOfEvenNumbers from 1 to destination
  */
 export function evenNumbersWithin(destination) {
-    console.log(destination)
-    // get the number from 0 to destination
-    const sum = 0
-    const count = 0
+    let sum = 0
+    let count = 0
     const arrayOfEvenNumbers = []
 
-    // write your code here
+    for (let i = 0; i <= destination; i++) {
+        if (i % 2 === 0) {
+            arrayOfEvenNumbers.push(i)
+            sum += i
+            count++
+        }
+    }
 
     return {
         count,
@@ -59,7 +65,10 @@ export function celsiusToFahrenheit(arrayOfNumbers) {
     console.log(arrayOfNumbers)
     const result = []
 
-    // write your code here
+    for (const c of arrayOfNumbers) {
+        const f = (c * 9) / 5 + 32
+        result.push(Math.trunc(f))
+    }
 
     return result
 }
@@ -74,14 +83,17 @@ export function celsiusToFahrenheit(arrayOfNumbers) {
  * @returns {object} the count, sum, and arrayOfOddNumbers
  */
 export function oddNumbersWithin(destination) {
-    console.log(destination)
-    // get the number from 0 to destination
-    const sum = 0
-    const count = 0
+    let sum = 0
+    let count = 0
     const arrayOfOddNumbers = []
 
-    // write your code here
-
+    for (let i = 0; i <= destination; i++) {
+        if (i % 2 !== 0) {
+            arrayOfOddNumbers.push(i)
+            sum += i
+            count++
+        }
+    }
     return {
         count,
         sum,
@@ -100,12 +112,17 @@ export function oddNumbersWithin(destination) {
  * @returns {object} the count, sum, and arrayOfMultiples
  */
 export function findMultiples(arrayOfNumbers, factor) {
-    console.log(arrayOfNumbers, factor)
-    const sum = 0
-    const count = 0
     const arrayOfMultiples = []
+    let sum = 0
+    let count = 0
 
-    // write your code here
+    for (const num of arrayOfNumbers) {
+        if (num % factor === 0) {
+            arrayOfMultiples.push(num)
+            sum += num
+            count++
+        }
+    }
 
     return {
         count,
@@ -126,11 +143,19 @@ export function findMultiples(arrayOfNumbers, factor) {
  * @returns {Array} the array of factorial results
  */
 export function calculateFactorials(arrayOfNumbers) {
-    console.log(arrayOfNumbers)
-    const result = []
+    function factorial(n) {
+        if (n < 0)
+            return 0
+        if (n === 0)
+            return 1
+        let product = 1
+        for (let i = 1; i <= n; i++) {
+            product *= i
+        }
+        return product
+    }
 
-    // write your code here
-
+    const result = arrayOfNumbers.map(num => factorial(num))
     return result
 }
 
@@ -145,18 +170,32 @@ export function calculateFactorials(arrayOfNumbers) {
  * @returns {object} the count, sum, and arrayOfPrimes
  */
 export function findPrimeNumbers(arrayOfNumbers) {
-    console.log(arrayOfNumbers)
-    const sum = 0
-    const count = 0
     const arrayOfPrimes = []
 
-    // write your code here
+    for (const num of arrayOfNumbers) {
+        if (isPrime(num)) {
+            arrayOfPrimes.push(num)
+        }
+    }
+
+    const sum = arrayOfPrimes.reduce((acc, n) => acc + n, 0)
+    const count = arrayOfPrimes.length
 
     return {
         count,
         sum,
         arrayOfPrimes,
     }
+}
+
+function isPrime(n) {
+    if (n <= 1)
+        return false
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0)
+            return false
+    }
+    return true
 }
 
 /**
@@ -168,12 +207,7 @@ export function findPrimeNumbers(arrayOfNumbers) {
  * @returns {Array} the array of doubled numbers
  */
 export function doubleTheValues(arrayOfNumbers) {
-    console.log(arrayOfNumbers)
-    const result = []
-
-    // write your code here
-
-    return result
+    return arrayOfNumbers.map(num => num * 2)
 }
 
 // ========================
