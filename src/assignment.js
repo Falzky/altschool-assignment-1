@@ -62,7 +62,6 @@ export function evenNumbersWithin(destination) {
  * @returns Array the converted temperatures in Fahrenheit
  */
 export function celsiusToFahrenheit(arrayOfNumbers) {
-    console.log(arrayOfNumbers)
     const result = []
 
     for (const c of arrayOfNumbers) {
